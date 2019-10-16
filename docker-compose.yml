@@ -1,6 +1,5 @@
 version: '2'
 services:
-
   ## Config Servers
   config01:
     image: mongo:3.4
@@ -29,6 +28,11 @@ services:
     command: mongod --port 27018 --shardsvr --replSet shard01 
     volumes:
       - ./scripts:/scripts
+  shard01c:
+    image: mongo:3.4
+    command: mongod --port 27018 --shardsvr --replSet shard01 
+    volumes:
+      - ./scripts:/scripts
   shard02a:
     image: mongo:3.4
     command: mongod --port 27019 --shardsvr --replSet shard02 
@@ -39,12 +43,22 @@ services:
     command: mongod --port 27019 --shardsvr --replSet shard02 
     volumes:
       - ./scripts:/scripts
+  shard02c:
+    image: mongo:3.4
+    command: mongod --port 27019 --shardsvr --replSet shard02 
+    volumes:
+      - ./scripts:/scripts
   shard03a:
     image: mongo:3.4
     command: mongod --port 27020 --shardsvr --replSet shard03 
     volumes:
       - ./scripts:/scripts
   shard03b:
+    image: mongo:3.4
+    command: mongod --port 27020 --shardsvr --replSet shard03 
+    volumes:
+      - ./scripts:/scripts
+  shard03c:
     image: mongo:3.4
     command: mongod --port 27020 --shardsvr --replSet shard03 
     volumes:
@@ -64,7 +78,10 @@ services:
       - config03
       - shard01a
       - shard01b
+      - shard01c
       - shard02a
       - shard02b
+      - shard02c
       - shard03a
       - shard03b
+      - shard03c
